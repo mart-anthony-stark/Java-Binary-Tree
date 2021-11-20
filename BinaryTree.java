@@ -1,29 +1,29 @@
-public class BinaryTree{
+public class BinaryTree {
     Node root;
 
-    public void addNode(int key, String name){
-        Node newNode = new Node(key, name)
+    public void addNode(int key, String name) {
+        Node newNode = new Node(key, name);
 
-        if(root == null){
+        if (root == null) {
             root = newNode;
-        }else{
+        } else {
             Node focusNode = root;
 
             Node parent;
 
-            while(true){
+            while (true) {
                 parent = focusNode;
-                if(key < focusNode.key){
+                if (key < focusNode.key) {
                     focusNode = focusNode.leftChild;
 
-                    if(focusNode == null){
+                    if (focusNode == null) {
                         parent.leftChild = newNode;
                         return;
                     }
-                }else{
+                } else {
                     focusNode = focusNode.rightChild;
 
-                    if(focusNode == null){
+                    if (focusNode == null) {
                         parent.rightChild = newNode;
                         return;
                     }
@@ -32,21 +32,44 @@ public class BinaryTree{
         }
     }
 
+    public void inOrderTraverseTree(Node focusNode) {
+        if (focusNode != null) {
+            inOrderTraverseTree(focusNode.leftChild);
+
+            System.out.println(focusNode);
+
+            inOrderTraverseTree(focusNode.rightChild);
+        }
+    }
+
+    public static void main(String[] args) {
+        BinaryTree tree = new BinaryTree();
+
+        tree.addNode(50, "CEO");
+        tree.addNode(20, "CTO");
+        tree.addNode(15, "Project Manager");
+        tree.addNode(30, "Fullstack Lead");
+        tree.addNode(75, "Frontend dev");
+        tree.addNode(40, "Backend dev");
+
+        tree.inOrderTraverseTree(tree.root);
+    }
+
 }
 
-class Node{
+class Node {
     int key;
     String name;
 
     Node leftChild;
     Node rightChild;
 
-    Node(int key, String name){
-        this.key=key;
-        this.name=name;
+    Node(int key, String name) {
+        this.key = key;
+        this.name = name;
     }
 
-    public String toString(){
+    public String toString() {
         return name + " has a key " + key;
     }
 }
