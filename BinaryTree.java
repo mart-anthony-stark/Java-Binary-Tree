@@ -52,6 +52,17 @@ public class BinaryTree {
         }
     }
 
+    public void postOrderTraverseTree(Node focusNode) {
+        if (focusNode != null) {
+
+            postOrderTraverseTree(focusNode.leftChild);
+
+            postOrderTraverseTree(focusNode.rightChild);
+
+            System.out.println(focusNode);
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
 
@@ -62,7 +73,7 @@ public class BinaryTree {
         tree.addNode(75, "Frontend dev");
         tree.addNode(40, "Backend dev");
 
-        tree.preorderTraverseTree(tree.root);
+        tree.postOrderTraverseTree(tree.root);
     }
 
 }
