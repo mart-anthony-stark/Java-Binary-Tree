@@ -30,6 +30,7 @@ public class Tree {
         return "";
     }
 
+    @Deprecated
     private void inOrder(Node root) {
         if (root == null)
             return;
